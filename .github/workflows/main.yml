@@ -1,0 +1,63 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: Build & Test
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    permissions: write-all
+    name: Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Clear cache
+      run: gh cache delete Build
+      env:
+        GH_TOKEN: ${{ github.token }}
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration release
+    - name: Test
+      run: dotnet test --no-build --configuration release --verbosity normal --collect "Code Coverage"
+    - name: Copy release
+      run: |
+        find ./src/2024/bin/Release/net8.0/ -regex '.*\.(exe|pdb|xml)' -delete
+        mv ./src/2024/bin/Release/net8.0/ ./release/
+    - name: Cache
+      uses: actions/cache@v3.3.2
+      with:
+        key: Build
+        path: ./release
+
+  execute:
+    name: Execute
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 8.0.x
+    - name: Restore cache
+      uses: actions/cache@v3.3.2
+      with:
+        key: Build
+        path: ./release
+    - name: Run
+      working-directory: ./release
+      run: |
+          results=$(dotnet 2024.dll)
+          echo -e "::notice::$results"
