@@ -12,6 +12,13 @@
 		<Compile Include="Modules\Day02.fs" />
 		<Compile Include="Modules\Day03.fs" />
 		<Compile Include="Modules\Day04.fs" />
+		<Compile Include="Modules\Day05.fs" />
+		<Compile Include="Modules\Day06.fs" />
+		<Compile Include="Modules\Day09.fs" />
+		<Compile Include="Modules\Day10.fs" />
+		<Compile Include="Modules\Day11.fs" />
+		<Compile Include="Modules\Day12.fs" />
+		<Compile Include="Modules\Day13.fs" />
 		<Content Include="Inputs\Input01.txt">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
@@ -23,6 +30,27 @@
 		</Content>
 		<Content Include="Inputs\Input04.txt">
 		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Inputs\Input05.txt">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Inputs\Input06.txt">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Inputs\Input09.txt" >
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Inputs\Input10.txt" >
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Inputs\Input11.txt" >
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Inputs\Input12.txt" >
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Inputs\Input13.txt" >
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Compile Include="Program.fs" />	
 	</ItemGroup>
