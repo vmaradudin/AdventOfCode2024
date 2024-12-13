@@ -18,7 +18,7 @@ jobs:
     steps:    
     - uses: actions/checkout@v3
     - name: Clear cache
-      run: gh cache -k Build | gh cache delete
+      run: gh cache list -k Build | gh cache delete
       env:
         GH_TOKEN: ${{ github.token }}
     - name: Setup .NET
