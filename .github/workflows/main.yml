@@ -15,10 +15,10 @@ jobs:
     name: Build & Test
     runs-on: ubuntu-latest
 
-    steps:
+    steps:    
     - uses: actions/checkout@v3
     - name: Clear cache
-      run: gh cache delete Build
+      run: gh cache -k Build | gh cache delete
       env:
         GH_TOKEN: ${{ github.token }}
     - name: Setup .NET
