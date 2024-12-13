@@ -61,7 +61,5 @@ jobs:
     - name: Run
       working-directory: ./release
       run: |
-          for l in $(dotnet 2024.dll);
-          do
-            echo -e "::notice::${i} \n";
-          done
+          results=$(dotnet 2024.dll)
+          echo "::set-output name=results::$results"
