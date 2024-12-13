@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v3
     
     - name: Clear cache
-      if: false
+      if: true
       run: gh cache delete Build
       env:
         GH_TOKEN: ${{ github.token }}
@@ -61,5 +61,5 @@ jobs:
     - name: Run
       working-directory: ./release
       run: |
-          results=$(dotnet 2024.dll)
-          echo -e "::notice::$results"
+          results="$(dotnet 2024.dll; echo x)"
+          echo -e "::notice::${results%x}"
